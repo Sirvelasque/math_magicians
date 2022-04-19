@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import './calculator.css';
 import React from 'react';
 import PropTypes from 'prop-types';
