@@ -27,17 +27,17 @@ function Calculator() {
 
   const { next, total, operation } = state;
   return (
-    <div className='Container'>
+    <div className="Container">
       <h2>Let&apos;s do some math</h2>
       <div id="Calculator">
-      <input type="text" value={next || operation || total || ''} onChange={changetext} />
-      <div className="numcontainer" key="Numboard">
-        {numValues.map((d) => (<NumButton number={d} key={d} type="num" onClick={() => changetext(d)} />))}
+        <input type="text" value={next || operation || total || ''} onChange={changetext} />
+        <div className="numcontainer" key="Numboard">
+          {numValues.map((d) => (<NumButton number={d} key={d} type="num" onClick={() => changetext(d)} />))}
+        </div>
+        <div className="opContainer">
+          {operations.map((d) => (<NumButton number={d} key={d} type="op" onClick={() => changetext(d)} />))}
+        </div>
       </div>
-      <div className="opContainer">
-        {operations.map((d) => (<NumButton number={d} key={d} type="op" onClick={() => changetext(d)} />))}
-      </div>
-    </div>
     </div>
   );
 }
