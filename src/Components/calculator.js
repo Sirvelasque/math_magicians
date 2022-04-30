@@ -27,7 +27,9 @@ function Calculator() {
 
   const { next, total, operation } = state;
   return (
-    <div id="Calculator">
+    <div className='Container'>
+      <h2>Let&apos;s do some math</h2>
+      <div id="Calculator">
       <input type="text" value={next || operation || total || ''} onChange={changetext} />
       <div className="numcontainer" key="Numboard">
         {numValues.map((d) => (<NumButton number={d} key={d} type="num" onClick={() => changetext(d)} />))}
@@ -35,6 +37,7 @@ function Calculator() {
       <div className="opContainer">
         {operations.map((d) => (<NumButton number={d} key={d} type="op" onClick={() => changetext(d)} />))}
       </div>
+    </div>
     </div>
   );
 }
