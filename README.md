@@ -2,8 +2,6 @@
 
 > Handy Calculator App
 
-![image](https://user-images.githubusercontent.com/82236725/162061689-59a0aa7e-4be1-42dd-a9f1-70784bfd4195.png)
-
 ## Built With
 
 - Html and Css
