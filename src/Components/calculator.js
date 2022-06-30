@@ -1,5 +1,5 @@
 import './calculator.css';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import calculate from '../logic/calculate';
 
@@ -9,40 +9,34 @@ function NumButton(props) {
   return (<button type="button" className={classes} onClick={onClick}>{number}</button>);
 }
 
-class calculator extends React.PureComponent {
-  numValues = ['AC', '+/-', '%',
+function Calculator() {
+  const numValues = ['AC', '+/-', '%',
     '7', '8', '9',
     '4', '5', '6',
     '1', '2', '3',
     '0', '.',
   ];
 
-  operations = ['÷', 'x', '-', '+', '='];
+  const operations = ['÷', 'x', '-', '+', '='];
 
-  constructor(props) {
-    super(props);
-    this.changetext = this.changetext.bind(this);
-    this.state = { total: '0', next: null };
-  }
+  const [state, setState] = useState({ total: null, next: null, operation: null });
 
-  changetext(ss) {
-    this.setState((state) => (calculate(state, ss)));
-  }
+  const changetext = (ss) => {
+    setState((state) => (calculate(state, ss)));
+  };
 
-  render() {
-    const { next, total } = this.state;
-    return (
-      <div id="Calculator">
-        <input type="text" value={next || total || ''} onChange={this.changetext} />
-        <div className="numcontainer" key="Numboard">
-          {this.numValues.map((d) => (<NumButton number={d} key={d} type="num" onClick={() => this.changetext(d)} />))}
-        </div>
-        <div className="opContainer">
-          {this.operations.map((d) => (<NumButton number={d} key={d} type="op" onClick={() => this.changetext(d)} />))}
-        </div>
+  const { next, total, operation } = state;
+  return (
+    <div id="Calculator">
+      <input type="text" value={next || operation || total || ''} onChange={changetext} />
+      <div className="numcontainer" key="Numboard">
+        {numValues.map((d) => (<NumButton number={d} key={d} type="num" onClick={() => changetext(d)} />))}
       </div>
-    );
-  }
+      <div className="opContainer">
+        {operations.map((d) => (<NumButton number={d} key={d} type="op" onClick={() => changetext(d)} />))}
+      </div>
+    </div>
+  );
 }
 
 NumButton.propTypes = {
@@ -51,4 +45,4 @@ NumButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default calculator;
+export default Calculator;
